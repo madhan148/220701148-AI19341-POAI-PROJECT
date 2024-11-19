@@ -1,0 +1,81 @@
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        th, td {
+            padding: 15px;
+        }
+
+        table:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        table tbody tr:hover {
+            background-color: #ffe6e6;
+        }
+    </style>
+    <title>{{ title }} Sentiment Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="text-center shadow-lg p-5 mb-5 bg-gradient rounded" style="background: linear-gradient(135deg, #ff5722, #ff9800); color: rgb(0, 0, 0);">
+            <h1 class="display-4">Sentiment Analysis with VADER</h1>
+            <p class="lead">An innovative machine learning web app for <b>Sentiment Analysis</b> using Scikit-learn & VADER Sentiment.</p>
+        </div>
+
+        <div class="card mx-auto p-5 shadow" style="max-width: 600px; background: #f7f9fc;">
+            <form method="POST" class="p-3">
+                <textarea class="form-control" name="text1" placeholder="Say Something..." rows="5" style="background-color: #e0f7fa; border: 2px solid #00838f;"></textarea>
+                <br>
+                <input class="btn btn-lg btn-primary w-100" type="submit" value="Analyze Sentiment" style="background: linear-gradient(45deg, #2196f3, #21cbf3); box-shadow: 0 5px 15px rgba(0, 123, 255, 0.5);">
+            </form>
+        </div>
+
+        {% if final %}
+        <div class="text-center my-5">
+            <h2 class="bg-primary text-white p-3 rounded shadow">Sentiment Analysis Result</h2>
+            <p class="lead"><strong>'{{ text1 }}'</strong></p>
+            <h3 class="text-success">is {{ final * 100 }}% positive!</h3>
+
+            <h4 class="my-4">Score Breakdown</h4>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered rounded">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>SENTIMENT METRIC</th>
+                            <th>SCORE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Positive</td>
+                            <td>{{ text2 }}</td>
+                        </tr>
+                        <tr>
+                            <td>Neutral</td>
+                            <td>{{ text3 }}</td>
+                        </tr>
+                        <tr>
+                            <td>Negative</td>
+                            <td>{{ text5 }}</td>
+                        </tr>
+                        <tr>
+                            <td>Compound</td>
+                            <td>{{ text4 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
